@@ -35,7 +35,9 @@ public class Test {
 		System.out.println(palace);
 
 		// serialization
-
+		
+		System.out.println("before serialization: "+lift1.toString());
+		
 		File liftFile = new File("liftFile.txt");
 		FileOutputStream fileOut = null;
 		ObjectOutputStream out = null;
@@ -84,6 +86,7 @@ public class Test {
 			}
 		}
 
+		System.out.println("after deserialization: "+lift1.toString());
 	}
 
 }
