@@ -8,7 +8,7 @@ public class Lift implements Comparable<Lift>, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private int current;
 	private int max;
 	private int min;
@@ -53,53 +53,81 @@ public class Lift implements Comparable<Lift>, Serializable {
 		return this.capacity = capacity;
 	}
 
-	public void move(int floor) {
+	public String move(int floor) {
 		int position = getCurrent();
+		StringBuilder sb = new StringBuilder();
 		if (floor <= getMax() && floor >= getMin()) {
 			if (floor > position) {
 				for (int i = position; i < floor; i++) {
-					moveUp();
+
+					try {
+						Thread.sleep(1500);
+					} catch (InterruptedException e) {
+
+						e.printStackTrace();
+					}
+					sb = moveUp();
 				}
 			} else if (floor < position) {
 				for (int i = position; i > floor; i--) {
-					moveDown();
+
+					try {
+						Thread.sleep(1500);
+					} catch (InterruptedException e) {
+
+						e.printStackTrace();
+					}
+					sb = moveDown();
 				}
 			} else
-				System.out.println("you are already there!");
+				sb.append("you are already there!");
+			System.out.println(sb);
 		} else
-			System.out.println("can't go beyond limits!");
+			sb.append("can't go beyond limits!");
+		System.out.println(sb);
+		String message = sb.toString();
+		return message;
 	}
 
-	public void moveUp() {
+	public StringBuilder moveUp() {
 		int position = getCurrent();
+		StringBuilder sb = new StringBuilder();
 		if (position < getMax()) {
 			position++;
 			setCurrent(position);
-			StringBuilder sb = new StringBuilder();
 			sb.append("one floor up ");
 			sb.append("you are at the: ");
 			sb.append(getCurrent());
 			sb.append("'th floor");
+
 			System.out.println(sb);
+
 		} else {
-			System.out.println("you are at the top floor!");
+			sb.append("you are at the top floor!");
+			System.out.println(sb);
 		}
+
+		return sb;
 	}
 
-	public void moveDown() {
+	public StringBuilder moveDown() {
 		int position = getCurrent();
+		StringBuilder sb = new StringBuilder();
 		if (position > getMin()) {
 			position--;
 			setCurrent(position);
-			StringBuilder sb = new StringBuilder();
+
 			sb.append("one floor down ");
 			sb.append("you are at the : ");
 			sb.append(getCurrent());
 			sb.append("'th floor");
 			System.out.println(sb);
+
 		} else {
-			System.out.println("you are at the ground floor!");
+			sb.append("you are at the ground floor!");
+			System.out.println(sb);
 		}
+		return sb;
 	}
 
 	public int hashCode() {

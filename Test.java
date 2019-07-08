@@ -98,18 +98,21 @@ public class Test {
 		JTextArea text = new JTextArea("ready to go", 2, 10);
 		text.setEditable(false);
 
-		JButton but1 = new JButton("first");
-		JButton but2 = new JButton("second");
-		JButton but3 = new JButton("third");
-		JButton but4 = new JButton("fourth");
-		JButton but5 = new JButton("fifth");
-		JButton but6 = new JButton("penthouse");
+		JButton but1 = new JButton("1");
+		JButton but2 = new JButton("2");
+		JButton but3 = new JButton("3");
+		JButton but4 = new JButton("4");
+		JButton but5 = new JButton("5");
+		JButton but6 = new JButton("6");
 
 		ActionListener listen = new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+				String s = e.getActionCommand();
+				s.getClass();
+				String message = lift1.move(Integer.valueOf(s));
+				text.setText(s + " floor");
+				text.setText(message);
 			}
 		};
 		but1.addActionListener(listen);
