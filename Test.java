@@ -22,7 +22,7 @@ public class Test {
 
 		// instantiate class
 
-		Lift lift1 = new Lift(2, 6, 0, 4);
+		Lift lift1 = new Lift(5, 8, 2, 4);
 		Lift lift2 = new Lift(4, 7, 1, 3);
 		Lift lift3 = new Lift(2, 8, 0, 5);
 
