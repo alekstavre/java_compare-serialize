@@ -1,5 +1,8 @@
 package testpack1;
 
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,17 +11,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
 public class Test {
 
 	public static void main(String[] args) {
 
 		// instantiate class
 
-		Lift lift1 = new Lift(3, 6, 0, 4);
+		Lift lift1 = new Lift(1, 6, 0, 4);
 		Lift lift2 = new Lift(4, 7, 1, 3);
 		Lift lift3 = new Lift(2, 8, 0, 5);
 
-		lift1.move(5);
+		// lift1.move(5);
 
 		// add and sort arraylist
 
@@ -35,9 +42,7 @@ public class Test {
 		System.out.println(palace);
 
 		// serialization
-		
-		System.out.println("before serialization: "+lift1.toString());
-		
+
 		File liftFile = new File("liftFile.txt");
 		FileOutputStream fileOut = null;
 		ObjectOutputStream out = null;
@@ -72,6 +77,7 @@ public class Test {
 			fileIn = new FileInputStream(liftFile);
 			in = new ObjectInputStream(fileIn);
 			System.out.println("deserialized!");
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -81,12 +87,49 @@ public class Test {
 				fileIn.close();
 
 			} catch (IOException e) {
-				
+
 				e.printStackTrace();
 			}
 		}
 
-		System.out.println("after deserialization: "+lift1.toString());
-	}
+		JFrame fr = new JFrame("Flow Layout");
 
+		fr.setLayout(new FlowLayout());
+		JTextArea text = new JTextArea("ready to go", 2, 10);
+		text.setEditable(false);
+
+		JButton but1 = new JButton("first");
+		JButton but2 = new JButton("second");
+		JButton but3 = new JButton("third");
+		JButton but4 = new JButton("fourth");
+		JButton but5 = new JButton("fifth");
+		JButton but6 = new JButton("penthouse");
+
+		ActionListener listen = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+		};
+		but1.addActionListener(listen);
+		but2.addActionListener(listen);
+		but3.addActionListener(listen);
+		but4.addActionListener(listen);
+		but5.addActionListener(listen);
+		but6.addActionListener(listen);
+
+		fr.add(but1);
+		fr.add(but2);
+		fr.add(but3);
+		fr.add(but4);
+		fr.add(but5);
+		fr.add(but6);
+
+		fr.add(text);
+		fr.setSize(500, 300);
+		fr.pack();
+		fr.setVisible(true);
+
+	}
 }
